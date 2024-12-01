@@ -1,3 +1,35 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const calendarEl = document.getElementById('calendar');
+
+    // FullCalendar 초기화
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth', // 월간 보기
+        locale: 'ko', // 한글 설정
+        events: loadEvents() // 로컬스토리지 기록을 로드
+    });
+
+    calendar.render(); // 달력 렌더링
+});
+
+// 로컬스토리지에서 운동 기록을 불러와 달력 이벤트로 변환
+function loadEvents() {
+    const events = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        const date = localStorage.key(i);
+        const record = JSON.parse(localStorage.getItem(date));
+
+        const totalSets = Object.values(record).reduce((sum, exercise) => {
+            return sum + parseInt(exercise.sets, 10);
+        }, 0);
+
+        events.push({
+            title: `운동 완료: ${totalSets} 세트`,
+            start: date
+        });
+    }
+    return events;
+}
+
 const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 recognition.lang = 'ko-KR';
 
