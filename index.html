@@ -1,16 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Alarm</title>
+    <title>운동 기록 앱</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>웹 알람</h1>
-    <label for="time">알람 시간:</label>
-    <input type="time" id="time">
-    <button onclick="setAlarm()">알람 설정</button>
-    <p id="status"></p>
+    <h1>운동 기록 앱</h1>
+    <div id="exercise-list">
+        <h2>오늘의 운동</h2>
+        <ul>
+            <li>푸쉬업: <span id="pushups-count">0</span> / 3세트</li>
+            <li>파이크푸쉬업: <span id="pike-count">0</span> / 3세트</li>
+            <li>풀업: <span id="pullup-count">0</span> / 3세트</li>
+            <li>할루우바디: <span id="hollow-count">0</span> / 3세트</li>
+            <li>할로우 올리기: <span id="hollow-up-count">0</span> / 3세트</li>
+            <li>한다리스쿼트: <span id="handari-count">0</span> / 3세트</li>
+        </ul>
+        <button id="start-voice">음성 인식 시작</button>
+        <button onclick="finishWorkout()">운동 완료</button>
+    </div>
+    <h2>달력</h2>
+    <div id="calendar"></div>
     <script src="script.js"></script>
 </body>
 </html>
